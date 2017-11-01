@@ -19,44 +19,60 @@ newBtn.onclick = function() {
 
 }; */
 
+
 $(function() {
     $("#addInputList").keyup(function(event){
         if(event.keyCode === 13){
             addItem();
         }
+    });
+    $("#taskInput").keyup(function(event){
+        if(event.keyCode === 13){
+            addTask();
+        }
     })
 });
 
 
+
+//add item creats a new list and with newtask() should give the first input in the tabcontent div
 function addItem(){
     var theLabel = $("#addInputList").val();
     if(theLabel !== "" || " "){
-        var nextList = "<button class=\"tablinks\" onclick=\"openTab(event, \'" + theLabel + "\')\">" + theLabel + "</button>";
+        var nextList = "<button id=\'" + theLabel + "\' class=\"tablinks\" onclick=\"openTab(event, \'"+ theLabel +"\')\">" + theLabel + "</button>";
         $(".addTab").before(nextList);
         $("#addInputList").val("");
-        newTask();
+        var todoInput = "<div id=\"" + theLabel + "\" class=\"tabcontent\"><input type=\"text\" class=\"input\" placeholder=\"New Task\"></div>";
+        $(".todo-container").append(todoInput);
+
     }
 }
 
+//new task is called when add item is created. newTask() creates the input in the tabcontent div
+function newTask (){
+    console.log("yes");
+    var theLabel = $("#addInputList").val();
 
-function newTask(){
-    var theLabel = $("#addInputlist").val();
-    var todoInput = "<div id=\"" + theLabel + "\" class=\"tabcontent\"><input type=\"text\" class=\"input\" placeholder=\"New Task\"></div>";
-    $("#todo-container").append(todoInput);
 }
 
-
+//creates a new task wtih checkbox and trash can where text input was, and input moves down.
 function addTask(){
-    var theLabel = $
+    var theLabel = $("#addInputList").val();
+    var newTask = $("#taskInput").val();
+    if(newTask !== "" || " "){
+        var nextTask = "<div class=\"" + theLabel + "\"><input type=\"checkbox\" class=\"check\" id=\"cb\"><span>" + newTask + "</span><i class=\"fa fa-trash-o\" aria-hidden=\"true\"></i></div>";
+        $("#taskInput").before(nextTask);
+        $("#taskInput").val("");
+    }
 }
 
-
+//will delete and item when trashcan is clicked
 function deleteItem(element){
     console.log($(element).parent());
     $(element).parent().remove();
 }
 
-
+//changes the list item be shown or not after being clicked.
 function openTab(event, theLabel) {
     // Declare all variables
     var i, tabcontent, tablinks;
