@@ -1,23 +1,4 @@
-/*
-function addNewItem(list, itemText) {
-    var listItem = document.createElement("input");
-    listItem.innerText = itemText;
 
-    list.appendChild(listItem);
-}
-
-var newBtn = document.getElementById("addBtn");
-
-
-newBtn.onclick = function() {
-    var itemText =
-
-    if(!itemText || itemText.trim() === ""){
-        return false;
-    }
-    addNewItem(document.getElementbyId("todoList"), itemText);
-
-}; */
 
 
 $(function() {
@@ -33,34 +14,35 @@ $(function() {
     })
 });
 
+//FOUND THE PROBLEM. THERE ARE TWO ID'S TRYING TO BE USED. MAKE ONE OF YOUR ID'S SEPERATE OR == TO STRING.REVERSE TO MAKE ID'S UNIQUE
 
 
-//add item creats a new list and with newtask() should give the first input in the tabcontent div
+//add item creates a new list and with newtask() should give the first input in the tabcontent div
 function addItem(){
-    var theLabel = $("#addInputList").val();
-    if(theLabel !== "" || " "){
-        var nextList = "<button id=\'" + theLabel + "\' class=\"tablinks\" onclick=\"openTab(event, \'"+ theLabel +"\')\">" + theLabel + "</button>";
+    var itemName = $("#addInputList").val();
+    var isEmpty = "" && " " && null;
+    if(itemName !== isEmpty){
+        var nextList = "<button id=\'" + itemName + "\' class=\"tablinks\" onclick=\"openTab(event, \'"+ itemName +"\')\">" + itemName + "</button>";
         $(".addTab").before(nextList);
         $("#addInputList").val("");
-        var todoInput = "<div id=\"" + theLabel + "\" class=\"tabcontent\"><input type=\"text\" class=\"input\" placeholder=\"New Task\"></div>";
+        var todoInput = "<div id=\"" + itemName + "\" class=\"tabcontent\"><input type=\"text\" class=\"input\" placeholder=\"New Task\"></div>";
         $(".todo-container").append(todoInput);
-
     }
 }
 
 //new task is called when add item is created. newTask() creates the input in the tabcontent div
 function newTask (){
-    console.log("yes");
+
     var theLabel = $("#addInputList").val();
 
 }
 
-//creates a new task wtih checkbox and trash can where text input was, and input moves down.
+//creates a new task with checkbox and trash can where text input was, and input moves down.
 function addTask(){
-    var theLabel = $("#addInputList").val();
+    var itemNameTwo = $("#addInputList").val();
     var newTask = $("#taskInput").val();
     if(newTask !== "" || " "){
-        var nextTask = "<div class=\"" + theLabel + "\"><input type=\"checkbox\" class=\"check\" id=\"cb\"><span>" + newTask + "</span><i class=\"fa fa-trash-o\" aria-hidden=\"true\"></i></div>";
+        var nextTask = "<div class=\"" + itemNameTwo + "\" id=\"" + itemNameTwo + "\"><input type=\"checkbox\" class=\"check\" id=\"cb\"><span>" + newTask + "</span><i class=\"fa fa-trash-o\" aria-hidden=\"true\"></i></div>";
         $("#taskInput").before(nextTask);
         $("#taskInput").val("");
     }
@@ -72,10 +54,14 @@ function deleteItem(element){
     $(element).parent().remove();
 }
 
+
+
 //changes the list item be shown or not after being clicked.
 function openTab(event, theLabel) {
     // Declare all variables
-    var i, tabcontent, tablinks;
+    var i;
+    var tabcontent;
+    var tablinks;
 
     // Get all elements with class="tabcontent" and hide them
     tabcontent = document.getElementsByClassName("tabcontent");

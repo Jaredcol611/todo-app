@@ -1,0 +1,66 @@
+
+
+body{
+    font-size: 30px;
+}
+div{
+    margin-top: 10px;
+}
+h1 {
+    border-bottom: 2px solid black;
+    margin-bottom: 0;
+    padding-bottom: 20px;
+}
+div.listItems {
+    float: left;
+    width: auto;
+    height: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+div.listItems h2 {
+    display: inline;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    padding: 0 16px 16px 16px;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    transition: 0.3s;
+}
+.addTab{
+    width: 350px;
+    margin: 12px 29px;
+}
+.cb{
+    width: 15px;
+    position: relative;
+    bottom: 4px;
+    cursor: pointer;
+    margin: 0;
+}
+.cb2{
+    width: 15px;
+    position: relative;
+    bottom: 4px;
+    cursor: pointer;
+    margin: 0;
+}
+.fa-trash-o{
+    cursor: pointer;
+    color: darkred;
+    padding-right: 15px;
+}
+.fa-trash-o:hover{
+    color: red;
+}
+.fa-plus{
+    cursor: pointer;
+    color: mediumseagreen;
+}
+.fa-plus:hover{
+    color: springgreen;
+}
+.input{
+    margin-left: 50px;
+}
