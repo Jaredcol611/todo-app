@@ -25,6 +25,7 @@ $(function() {
         });
     });
 });
+// totalItems increments every time addItem or addTask is called, increasing for the element id.
 var totalItems = 0;
 //checks the status of a checkbox to cross out text for that area
 function status(element){
@@ -78,31 +79,41 @@ function deleteItem(element){
 
 }
 //onclick replaces element with input and keyup replaces input with element of inputs value
-function editText(element){
-    var currentText = this.innerText;
-    if(this === $(this)){
-        $(element).remove();
-        $(element).add("<input class='textEdit'>");
-        $(".textEdit").val(currentText);
-        var textReplace = $('.textEdit').val();
-        $(document).on('keyup', '.textEdit', function(event){
-            if (event.keyCode === 13){
-                $(element).remove();
-                $(element).add("<h2 class='.item' onclick='editText()'>" + textReplace + "</h2>")
-            }
-        });
-    }
-    else if(this === $(".taskH2")){
-        $(element).remove();
-        $(element).add("<input class='textEdit'>");
-        $(".textEdit").val(currentText);
-        var textReplace = $('.textEdit').val();
-        $(document).on('keyup', '.textEdit', function(event){
-            if (event.keyCode === 13){
-                $(element).remove();
-                $(element).add("<h2 class='.taskH2' onclick='editText()'>" + textReplace + "</h2>")
-            }
-        });
-    }
+function editText(element) {
+    var theId = element.id;
+    var theItem = document.getElementById(theId);
+    theItem.contentEditable = true;
+    $(element).keypress( function (event) {
+        if (event.keyCode === 13) {
+            event.preventDefault();
+        }
+    });
 }
+
+//     var currentText = element.id;
+//     if(element.id === $("[id^='item_']")){
+//         $(element).remove();
+//         $(element).add("<input class='textEdit'>");
+//         $(".textEdit").val(currentText);
+//         var textReplace = $('.textEdit').val();
+//         $(document).on('keyup', '.textEdit', function(event){
+//             if (event.keyCode === 13){
+//                 $(element).remove();
+//                 $(element).add("<h2 class='.item' onclick='editText()'>" + textReplace + "</h2>")
+//             }
+//         });
+//     }
+//     else if(this === $(".taskH2")){
+//         $(element).remove();
+//         $(element).add("<input class='textEdit'>");
+//         $(".textEdit").val(currentText);
+//         var textReplace = $('.textEdit').val();
+//         $(document).on('keyup', '.textEdit', function(event){
+//             if (event.keyCode === 13){
+//                 $(element).remove();
+//                 $(element).add("<h2 class='.taskH2' onclick='editText()'>" + textReplace + "</h2>")
+//             }
+//         });
+//     }
+// }
 
