@@ -1,5 +1,7 @@
 //next time you do something like this, create an array of objects and simply append things to it for your lists and tasks.
 
+
+// document.ready
 $(function() {
     $("#addInputList").keyup(function(event){
         if (event.keyCode === 13) {
@@ -23,44 +25,59 @@ $(function() {
         });
     });
 });
-var totalListItems = 1;
-var totalTaskItems = 1;
+var totalItems = 0;
 //checks the status of a checkbox to cross out text for that area
-function status(){
-    var checkbox = this;
+function status(element){
+    var addId = element.id.replace("cb_", "");
+    var item = document.getElementById('item_' + addId);
+    if(element.checked) {
+        item.style.textDecoration = "line-through";
+        item.style.color = "#509AF5";
+    } else {
+        item.style.textDecoration = "none";
+        item.style.color = "black";
+    }
 }
 //add item creates a new list item with checkbox, trash, and plus
 function addItem(){
+    totalItems++;
     var itemName = $("#addInputList").val();
     var isEmpty = "" && " " && null;
     if(itemName !== isEmpty){
-        var nextList = "<div><input class='cb' type='checkbox' onclick='status()'><h2 class=\"item\" onclick='editText(this)'>" + itemName + "</h2><i class='fa fa-trash-o' aria-hidden='true' onclick='deleteItem(this)'></i><i class=\"fa fa-plus\" aria-hidden=\"true\" onclick='newTask(this)'></i>";
+        var nextList = "<div><input class='cb' id='cb_" + totalItems + "' type='checkbox' onclick='status(this)'><h2 class=\"item\" id='item_" + totalItems + "' onclick='editText(this)'>" + itemName + "</h2><i class='fa fa-trash-o' aria-hidden='true' onclick='deleteItem(this)'></i><i class=\"fa fa-plus\" aria-hidden=\"true\" onclick='newTask(this)'></i>";
         $(".addTab").before(nextList);
         $("#addInputList").val("");
     }
 }
 //creates a new task with checkbox and trash can where text input was, and input moves down.
 function addTask(){
+    totalItems++;
     var newTask = $(".active").val();
     var isEmpty = "" && " " && null;
     if(newTask !== isEmpty){
-        var nextTask = "<div class='taskDiv'><input type=\"checkbox\" class=\"cb\" onclick='status()'><h2 class='taskH2' onclick='editText(this)'>" + newTask + "</h2><i class=\"fa fa-trash-o\" aria-hidden=\"true\" onclick='deleteItem(this)'></i></div>";
+        var nextTask = "<div class='taskDiv'><input type=\"checkbox\" class=\"cb\" id='cb_" + totalItems + "' onclick='status(this)'><h2 class='taskH2' id='item_" + totalItems + "' onclick='editText(this)'>" + newTask + "</h2><i class=\"fa fa-trash-o\" aria-hidden=\"true\" onclick='deleteItem(this)'></i></div>";
         $(".active").before(nextTask);
         $(".taskInput").val("");
     }
 }
 // called when clicking on the PLUS symbol.
 function newTask(element) {
-    var taskInput = "<br><input type=\"text\" id='taskInput' class='input taskInput' placeholder=\"Add a task\">";
+    var taskInput = "<br><input type=\"text\" class='input taskInput' placeholder=\"Add a task\">";
     $(element).parent().append(taskInput);
     $(element).remove();
 }
 //will delete and item when trashcan is clicked
 function deleteItem(element){
    // if(checkbox == checked)
-    $(element).parent().remove();
+    $(element).parent().animate({
+        opacity: 0,
+        left: "+1000"
+    }, 700, function(){
+        $(element).parent().remove();
+    });
+
 }
-// onclick replaces element with input and keyup replaces input with element of inputs value
+//onclick replaces element with input and keyup replaces input with element of inputs value
 function editText(element){
     var currentText = this.innerText;
     if(this === $(this)){

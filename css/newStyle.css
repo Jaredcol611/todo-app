@@ -26,7 +26,6 @@ div.listItems h2 {
     cursor: pointer;
     width: 100%;
     text-align: left;
-    transition: 0.3s;
 }
 .addTab{
     width: 350px;
@@ -56,7 +55,7 @@ div.listItems h2 {
 }
 .fa-plus{
     cursor: pointer;
-    color: mediumseagreen;
+    color: #68D958;
 }
 .fa-plus:hover{
     color: springgreen;
@@ -68,6 +67,7 @@ div.listItems h2 {
 }
 .taskDiv{
     margin-left: 50px;
+    position: relative;
 }
 .taskH2{
     padding: 0 16px 16px 16px;
