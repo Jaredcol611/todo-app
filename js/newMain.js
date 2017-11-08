@@ -13,7 +13,7 @@ $(function() {
             addTask();
         }
     });
-    //these two document statements allow for dynamically adding a task to a list via an 'active' class
+    // these two document statements allow for dynamically adding a task to a list via an 'active' class
     $(document).on('focus', '.taskInput', function(){
         $(this).on('focus', function () {
             $(this).addClass('active');
@@ -27,7 +27,7 @@ $(function() {
 });
 // totalItems increments every time addItem or addTask is called, increasing for the element id.
 var totalItems = 0;
-//checks the status of a checkbox to cross out text for that area
+// checks the status of a checkbox to cross out text for that area
 function status(element){
     var addId = element.id.replace("cb_", "");
     var item = document.getElementById('item_' + addId);
@@ -61,7 +61,7 @@ function addTask(){
         $(".taskInput").val("");
     }
 }
-// called when clicking on the PLUS symbol.
+//called when clicking on the PLUS symbol.
 function newTask(element) {
     var taskInput = "<br><input type=\"text\" class='input taskInput' placeholder=\"Add a task\">";
     $(element).parent().append(taskInput);
@@ -69,14 +69,12 @@ function newTask(element) {
 }
 //will delete and item when trashcan is clicked
 function deleteItem(element){
-   // if(checkbox == checked)
     $(element).parent().animate({
         opacity: 0,
         left: "+1000"
     }, 700, function(){
         $(element).parent().remove();
     });
-
 }
 //onclick replaces element with input and keyup replaces input with element of inputs value
 function editText(element) {
@@ -89,31 +87,12 @@ function editText(element) {
         }
     });
 }
-
-//     var currentText = element.id;
-//     if(element.id === $("[id^='item_']")){
-//         $(element).remove();
-//         $(element).add("<input class='textEdit'>");
-//         $(".textEdit").val(currentText);
-//         var textReplace = $('.textEdit').val();
-//         $(document).on('keyup', '.textEdit', function(event){
-//             if (event.keyCode === 13){
-//                 $(element).remove();
-//                 $(element).add("<h2 class='.item' onclick='editText()'>" + textReplace + "</h2>")
-//             }
-//         });
-//     }
-//     else if(this === $(".taskH2")){
-//         $(element).remove();
-//         $(element).add("<input class='textEdit'>");
-//         $(".textEdit").val(currentText);
-//         var textReplace = $('.textEdit').val();
-//         $(document).on('keyup', '.textEdit', function(event){
-//             if (event.keyCode === 13){
-//                 $(element).remove();
-//                 $(element).add("<h2 class='.taskH2' onclick='editText()'>" + textReplace + "</h2>")
-//             }
-//         });
-//     }
-// }
-
+//button that removes tasks with marked checkboxes
+function removeComplete() {
+    $(':checked').parent().animate({
+        opacity: 0,
+        left: "+1000"
+    }, 700, function () {
+        $(':checked').parent().remove()
+    });
+}
