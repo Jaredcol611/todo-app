@@ -76,7 +76,7 @@ function deleteItem(element){
         $(element).parent().remove();
     });
 }
-//onclick replaces element with input and keyup replaces input with element of inputs value
+//onclick replaces element with input and onkeyup replaces input with element of inputs value
 function editText(element) {
     var theId = element.id;
     var theItem = document.getElementById(theId);

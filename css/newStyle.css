@@ -18,7 +18,7 @@ div.listItems h2 {
 }
 .addTab{
     width: 350px;
-    margin: 12px 29px;
+    margin: 2px 29px 12px 29px;
     box-shadow: 1px 1px 1px black;
 }
 .cb{
@@ -61,6 +61,6 @@ div.listItems h2 {
     box-shadow: 1px 1px 2px black;
     border-radius: 10px 10px;
     background-color: white;
-    top: 5px;
+    top: 2px;
     outline: none;
 }
