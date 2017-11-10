@@ -4,23 +4,23 @@
 // document.ready
 $(function() {
     $("#addInputList").keyup(function(event){
-        if (event.keyCode === 13) {
+        if (event.keyCode === 13){
             addItem();
         }
     });
     $(document).on('keyup', '.active', function(event){
-        if (event.keyCode === 13) {
+        if (event.keyCode === 13){
             addTask();
         }
     });
     // these two document statements allow for dynamically adding a task to a list via an 'active' class
     $(document).on('focus', '.taskInput', function(){
-        $(this).on('focus', function () {
+        $(this).on('focus', function(){
             $(this).addClass('active');
         });
     });
     $(document).on('blur', '.taskInput', function(){
-        $(this).on('blur', function () {
+        $(this).on('blur', function(){
             $(this).removeClass('active');
         });
     });
@@ -39,7 +39,7 @@ function status(element){
         item.style.color = "black";
     }
 }
-//add item creates a new list item with checkbox, trash, and plus
+//add item creates a new list item with checkbox, trash, and plus. Increments total items and adds it as the id
 function addItem(){
     totalItems++;
     var itemName = $("#addInputList").val();
@@ -50,7 +50,7 @@ function addItem(){
         $("#addInputList").val("");
     }
 }
-//creates a new task with checkbox and trash can where text input was, and input moves down.
+//creates a new task with checkbox and trash can where text input was, and input moves down. Increments total items and adds it as the id
 function addTask(){
     totalItems++;
     var newTask = $(".active").val();
@@ -62,7 +62,7 @@ function addTask(){
     }
 }
 //called when clicking on the PLUS symbol.
-function newTask(element) {
+function newTask(element){
     var taskInput = "<br><input type=\"text\" class='input taskInput' placeholder=\"Add a task\">";
     $(element).parent().append(taskInput);
     $(element).remove();
@@ -77,7 +77,7 @@ function deleteItem(element){
     });
 }
 //onclick replaces element with input and onkeyup replaces input with element of inputs value
-function editText(element) {
+function editText(element){
     var theId = element.id;
     var theItem = document.getElementById(theId);
     theItem.contentEditable = true;
@@ -88,11 +88,11 @@ function editText(element) {
     });
 }
 //button that removes tasks with marked checkboxes
-function removeComplete() {
+function removeComplete(){
     $(':checked').parent().animate({
         opacity: 0,
         left: "+1000"
-    }, 700, function () {
+    }, 700, function(){
         $(':checked').parent().remove()
     });
 }
