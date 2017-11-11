@@ -20,7 +20,8 @@ div.listItems h2{
 .addTab{
     width: 350px;
     margin: 2px 0 400px 48px;
-    box-shadow: 1px 1px 1px black;
+    border: 2px solid black;
+    border-radius: 5px 5px;
 }
 .cb{
     width: 15px;
@@ -47,6 +48,8 @@ div.listItems h2{
 .input{
     margin-left: 140px;
     margin-right: 15px;
+    border: 2px solid black;
+    border-radius: 5px 5px;
 }
 .taskDiv{
     margin-left: 100px;
