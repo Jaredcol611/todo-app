@@ -33,7 +33,7 @@ function status(element){
     var item = document.getElementById('item_' + addId);
     if(element.checked) {
         item.style.textDecoration = "line-through";
-        item.style.color = "#509AF5";
+        item.style.color = "#1152C5";
     } else {
         item.style.textDecoration = "none";
         item.style.color = "black";
@@ -45,7 +45,7 @@ function addItem(){
     var itemName = $("#addInputList").val();
     var isEmpty = "" && " " && null;
     if(itemName !== isEmpty){
-        var nextList = "<div><input class='cb' id='cb_" + totalItems + "' type='checkbox' onclick='status(this)'><h2 class=\"item\" id='item_" + totalItems + "' onclick='editText(this)'>" + itemName + "</h2><i class='fa fa-trash-o' aria-hidden='true' onclick='deleteItem(this)'></i><i class=\"fa fa-plus\" aria-hidden=\"true\" onclick='newTask(this)'></i>";
+        var nextList = "<div class='listDiv'><input class='cb' id='cb_" + totalItems + "' type='checkbox' onclick='status(this)'><h2 class=\"item\" id='item_" + totalItems + "' onclick='editText(this)'>" + itemName + "</h2><i class='fa fa-trash-o' aria-hidden='true' onclick='deleteItem(this)'></i><i class=\"fa fa-plus\" aria-hidden=\"true\" onclick='newTask(this)'></i>";
         $(".addTab").before(nextList);
         $("#addInputList").val("");
     }
